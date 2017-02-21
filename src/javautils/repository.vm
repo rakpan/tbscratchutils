@@ -1,0 +1,56 @@
+package com.tb.ao.domain.repository;
+
+import com.tb.ao.ArchOnlineInitializer;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+/**
+ * Integration test to run the application.
+ *
+ * @author Rakesh Panati
+ */
+
+@Slf4j
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = ArchOnlineInitializer.class)
+@WebAppConfiguration
+@ActiveProfiles("unittest")
+public class $fname {
+    @Autowired
+    private WebApplicationContext context;
+
+    private MockMvc mvc;
+
+    @Before
+    public void setup() {
+        this.mvc = MockMvcBuilders.webAppContextSetup(this.context).build();
+    }
+
+    @Test
+    public void testFindAll() throws Exception {
+        MvcResult result = this.mvc.perform(get("/spring/$entity"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$._embedded.$entity", hasSize(greaterThan(0))))
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        log.debug(content);
+    }
+
+}

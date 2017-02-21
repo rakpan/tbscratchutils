@@ -1,0 +1,14 @@
+package com.tb.ao.domain.repository;
+
+import com.tb.ao.domain.entity.$entity;
+$idclasspack
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+/**
+ * Created by Rakesh Panati.
+ */
+
+@RepositoryRestResource(collectionResourceRel = "$table", path = "$table")
+public interface $fname extends CrudRepository<$entity,$idclass> {
+}

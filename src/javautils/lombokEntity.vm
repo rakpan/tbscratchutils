@@ -1,0 +1,14 @@
+package com.tb.aol.domain.entity;
+
+
+/**
+ * Created by RPANATI on 1/14/2015.
+ */
+
+@lombok.Data
+$classAnnotations
+public class $fname {
+
+$data
+
+}

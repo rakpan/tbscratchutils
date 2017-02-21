@@ -1,0 +1,12 @@
+#IDEA
+.idea
+*.iml
+ArchOnline.ipr
+ArchOnline.iws
+
+#Gradle
+.gradle/
+build/
+
+.classpath
+.project
